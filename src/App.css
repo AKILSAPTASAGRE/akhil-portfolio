@@ -2159,3 +2159,23 @@ a {
     filter: brightness(1.25) contrast(1.05) !important;
   }
 }
+/* MOBILE HERO TEXT POSITION — ONLY CHANGE */
+@media (max-width: 768px) {
+
+  /* Move the hero text slightly inward from the left */
+  .hero-content {
+    padding-left: 18px !important;
+  }
+
+  /* Keep the main heading aligned with the text */
+  .hero-content h1,
+  .hero-content h2,
+  .hero-content h3 {
+    margin-left: 0 !important;
+  }
+
+  /* Keep description aligned */
+  .hero-content p {
+    margin-left: 0 !important;
+  }
+}
