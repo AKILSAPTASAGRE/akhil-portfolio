@@ -1,124 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 import profileImage from "./assets/profile.jpg";
-import aboutProfileImage from "./assets/about-profile.png";
-import jewelleryTheftImage from "./assets/jewellery-theft.png";
-import tomatoDiseaseImage from "./assets/tomato-disease-robot.png";
-import plantCareImage from "./assets/plant-care-robot.png";
+import aboutProfile from "./assets/about-profile.png";
+import jewelleryTheft from "./assets/jewellery-theft.png";
+import plantCareRobot from "./assets/plant-care-robot.png";
+import tomatoDiseaseRobot from "./assets/tomato-disease-robot.png";
 
 function App() {
-  const scrollToSection = (id) => {
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatMessage, setChatMessage] = useState("");
+
+  const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({
       behavior: "smooth",
     });
   };
 
-  const projects = [
-    {
-      number: "01",
-      category: "AI / COMPUTER VISION",
-      title: "Jewellery Theft Detection System",
-      image: jewelleryTheftImage,
+  const sendMessage = () => {
+    if (!chatMessage.trim()) return;
 
-      description:
-        "An AI-powered CCTV surveillance system designed to detect suspicious activities in a jewellery shop and identify potential theft-related behaviour.",
+    const subject = encodeURIComponent("Portfolio Contact");
+    const body = encodeURIComponent(chatMessage);
 
-      problem:
-        "Continuous manual monitoring of CCTV footage can make it difficult to identify suspicious jewellery-related activities in real time.",
+    window.location.href =
+      `mailto:akilsaptasagare@gmail.com?subject=${subject}&body=${body}`;
 
-      solution:
-        "The system uses Computer Vision and AI models to analyse CCTV footage and identify people, hands and jewellery-related activities. The detected behaviour is then analysed to determine potential theft activity.",
-
-      pipeline: [
-        "CCTV Camera",
-        "Person Detection",
-        "Hand Detection",
-        "Jewellery Detection",
-        "Behaviour Analysis",
-        "Theft Detection",
-      ],
-
-      tech:
-        "YOLO • MobileNetV3 • Python • Computer Vision • Raspberry Pi 5",
-
-      contribution:
-        "Model training, Computer Vision development and theft-detection pipeline development.",
-
-      status:
-        "Currently under development.",
-    },
-
-    {
-      number: "02",
-      category: "ROBOTICS / AI",
-      title: "Smart Campus Tomato Disease Detection Robot",
-      image: tomatoDiseaseImage,
-
-      description:
-        "A robotic system that uses a camera to detect tomato plants, capture leaf images and process them to identify plant diseases.",
-
-      problem:
-        "Manual inspection of plant leaves can make disease identification time-consuming when monitoring plants.",
-
-      solution:
-        "The robot uses an ESP32 with a camera to detect the tomato plant and capture its leaf image. The captured image is processed to identify diseases such as Early Blight and Late Blight.",
-
-      pipeline: [
-        "ESP32",
-        "Camera",
-        "Detect Tomato Plant",
-        "Capture Leaf",
-        "Image Processing",
-        "Disease Detection",
-        "Early / Late Blight",
-      ],
-
-      tech:
-        "ESP32 • Computer Vision • Image Processing • Machine Learning • Robotics",
-
-      contribution:
-        "Hardware development, model training, image processing and overall project development.",
-
-      status:
-        "Partially working / Under development.",
-    },
-
-    {
-      number: "03",
-      category: "ROBOTICS / AUTOMATION",
-      title: "Smart Campus Plant Care / Irrigation Robot",
-      image: plantCareImage,
-
-      description:
-        "An intelligent plant-care robot designed to monitor plant and leaf conditions and automatically water plants when watering is required.",
-
-      problem:
-        "Manual plant monitoring and watering can be time-consuming and may lead to irregular watering of plants.",
-
-      solution:
-        "The robot uses a camera to observe the plant and leaf condition. Image processing is used to determine whether watering is required. When watering is needed, the system activates the water pump and valve to automatically water the plant.",
-
-      pipeline: [
-        "ESP32 + Arduino UNO",
-        "Camera",
-        "Plant / Leaf Condition",
-        "Image Processing",
-        "Watering Decision",
-        "Pump + Valve",
-        "Automatic Watering",
-      ],
-
-      tech:
-        "ESP32 • Arduino UNO • Camera • Image Processing • Robotics • Automation",
-
-      contribution:
-        "Hardware development, programming, camera/image processing and overall project development.",
-
-      status:
-        "Partially working / Under development.",
-    },
-  ];
+    setChatMessage("");
+  };
 
   return (
     <div className="portfolio">
@@ -127,116 +36,37 @@ function App() {
 
       <header className="navbar">
 
-        <div className="logo">
-          <span>&lt;/&gt;</span>
-          <strong>Akhil Saptasagare</strong>
+        <div
+          className="nav-logo"
+          onClick={() => scrollTo("home")}
+        >
+          <span className="logo-circle">AS</span>
+
+          <span className="logo-name">
+            AKHIL SAPTASAGARE
+          </span>
         </div>
 
-        <nav>
-          <a onClick={() => scrollToSection("home")}>HOME</a>
-
-          <a onClick={() => scrollToSection("about")}>ABOUT</a>
-
-          <a onClick={() => scrollToSection("skills")}>SKILLS</a>
-
-          <a onClick={() => scrollToSection("projects")}>PROJECTS</a>
-
-          <a onClick={() => scrollToSection("experience")}>
+        <nav className="nav-links">
+          <button onClick={() => scrollTo("home")}>HOME</button>
+          <button onClick={() => scrollTo("about")}>ABOUT</button>
+          <button onClick={() => scrollTo("work")}>WORK</button>
+          <button onClick={() => scrollTo("experience")}>
             EXPERIENCE
-          </a>
-
-          <a onClick={() => scrollToSection("certifications")}>
+          </button>
+          <button onClick={() => scrollTo("certifications")}>
             CERTIFICATIONS
-          </a>
-
-          <a onClick={() => scrollToSection("contact")}>
+          </button>
+          <button onClick={() => scrollTo("contact")}>
             CONTACT
-          </a>
+          </button>
         </nav>
-
-        <div className="theme-button">
-          ◐
-        </div>
 
       </header>
 
-
-      {/* ================= HOME ================= */}
+      {/* ================= HERO ================= */}
 
       <section id="home" className="hero">
-
-        <div className="hero-content">
-
-          <div className="hero-intro">
-            Hello, I'm <span></span>
-          </div>
-
-          <h1>
-            Akhil
-            <br />
-            <span>Saptasagare</span>
-          </h1>
-
-          <h3>
-            ECE STUDENT
-            <b>|</b>
-            AI & ML ENTHUSIAST
-            <b>|</b>
-            INNOVATOR
-          </h3>
-
-          <p>
-            I build intelligent systems that bridge the gap between
-            Artificial Intelligence and Embedded Technology.
-            <br />
-            Passionate about Computer Vision, IoT, Robotics and
-            real-world problem solving.
-          </p>
-
-          <div className="hero-buttons">
-
-            <a
-              href="/resume.pdf"
-              download
-              className="primary-button"
-            >
-              ↓ &nbsp; DOWNLOAD RESUME
-            </a>
-
-            <button
-              className="secondary-button"
-              onClick={() => scrollToSection("contact")}
-            >
-              ◉ &nbsp; LET&apos;S CONNECT
-            </button>
-
-          </div>
-
-          <div className="hero-contact">
-
-            <div>
-              <span>✉</span>
-              akhilsaptasagar3@gmail.com
-            </div>
-
-            <div>
-              <span>in</span>
-              linkedin.com/in/akhil-saptasagar-771a4039a
-            </div>
-
-            <div>
-              <span>⌕</span>
-              +91 88676 68644
-            </div>
-
-            <div>
-              <span>◎</span>
-              instagram.com/akil_saptasagare
-            </div>
-
-          </div>
-
-        </div>
 
         <div className="hero-image">
 
@@ -247,70 +77,110 @@ function App() {
 
         </div>
 
-      </section>
+        <div className="hero-dark"></div>
 
+        <div className="hero-glow"></div>
+
+        <div className="hero-top">
+
+          <span>
+            ECE ENGINEERING STUDENT
+          </span>
+
+          <span>
+            AI / ML / COMPUTER VISION
+          </span>
+
+        </div>
+
+        <div className="hero-content">
+
+          <div className="hero-small">
+            HELLO, I'M
+          </div>
+
+          <h1>
+
+            <span className="hero-first-name">
+              AKHIL
+            </span>
+
+            <br />
+
+            <span className="hero-last-name">
+              SAPTASAGARE
+            </span>
+
+          </h1>
+
+          <p>
+            I build intelligent systems that connect
+            Artificial Intelligence with Embedded Technology.
+          </p>
+
+        </div>
+
+        <div className="hero-location">
+          BELAGAVI — KARNATAKA — INDIA
+        </div>
+
+        <button
+          className="scroll-button"
+          onClick={() => scrollTo("about")}
+        >
+          ↓
+        </button>
+
+      </section>
 
       {/* ================= ABOUT ================= */}
 
-      <section id="about" className="section about">
+      <section
+        id="about"
+        className="section about-section"
+      >
 
         <div className="section-number">
-          02 / ABOUT
+          01 / INTRODUCTION
         </div>
 
         <div className="about-grid">
 
-          <div className="about-image">
+          <div className="about-title">
 
-            {/* NEW ABOUT PHOTO */}
-
-            <img
-              src={aboutProfileImage}
-              alt="Akhil Saptasagare"
-            />
+            <h2>
+              Building
+              <span>
+                intelligent
+              </span>
+              things.
+            </h2>
 
           </div>
 
           <div className="about-content">
 
-            <h2>
-              Engineering
-              <br />
-              ideas
-              <br />
-              <span>into reality.</span>
-            </h2>
-
-            <div className="cyan-line"></div>
-
-            <p>
-              I&apos;m an Electronics and Communication Engineering
-              student passionate about building intelligent systems
-              that solve real-world problems.
+            <p className="large-text">
+              Electronics and Communication Engineering
+              student passionate about Artificial Intelligence,
+              Machine Learning, Computer Vision, Embedded Systems,
+              IoT and Robotics.
             </p>
 
             <p>
-              My interests are focused on Artificial Intelligence,
-              Machine Learning, Computer Vision, IoT, Embedded Systems
-              and Robotics.
+              My goal is to turn engineering ideas into practical
+              systems that can solve real-world problems.
             </p>
 
-            <div className="about-details">
+            <div className="about-buttons">
 
-              <div>
-                <span>EDUCATION</span>
-                <strong>ECE Engineering</strong>
-              </div>
-
-              <div>
-                <span>UNIVERSITY</span>
-                <strong>VTU</strong>
-              </div>
-
-              <div>
-                <span>LOCATION</span>
-                <strong>Belagavi, Karnataka</strong>
-              </div>
+              <a
+                href="/Akhil_Ningappa_Saptasagare_Resume.pdf"
+                download
+                className="outline-button"
+              >
+                DOWNLOAD RESUME ↗
+              </a>
 
             </div>
 
@@ -318,308 +188,491 @@ function App() {
 
         </div>
 
-      </section>
+        <div className="about-image">
 
+          <img
+            src={aboutProfile}
+            alt="Akhil Saptasagare"
+          />
 
-      {/* ================= SKILLS ================= */}
-
-      <section id="skills" className="section skills">
-
-        <div className="section-number">
-          03 / SKILLS
         </div>
 
-        <h2>
-          Tools I use to
-          <br />
-          <span>build.</span>
-        </h2>
+      </section>
+
+      {/* ================= CAPABILITIES ================= */}
+
+      <section
+        id="capabilities"
+        className="section capabilities-section"
+      >
+
+        <div className="section-number">
+          02 / CAPABILITIES
+        </div>
+
+        <div className="capabilities-heading">
+
+          <h2>
+            What I
+            <br />
+            work
+            <br />
+            with.
+          </h2>
+
+          <p>
+            A growing technical toolkit built through projects,
+            experimentation and engineering practice.
+          </p>
+
+        </div>
 
         <div className="skills-grid">
 
-          {[
-            ["01", "Python"],
-            ["02", "C / C++"],
-            ["03", "Artificial Intelligence"],
-            ["04", "Machine Learning"],
-            ["05", "Computer Vision"],
-            ["06", "YOLO"],
-            ["07", "OpenCV"],
-            ["08", "MobileNetV3"],
-            ["09", "TensorFlow"],
-            ["10", "Arduino"],
-            ["11", "ESP32"],
-            ["12", "Raspberry Pi 5"],
-            ["13", "IoT"],
-            ["14", "Embedded Systems"],
-            ["15", "Robotics"],
-            ["16", "Image Processing"],
-          ].map(([number, skill]) => (
+          <div className="skill-item">
+            <span>01</span>
+            <h3>Python</h3>
+            <b>↗</b>
+          </div>
 
-            <div
-              className="skill-card"
-              key={skill}
-            >
+          <div className="skill-item">
+            <span>02</span>
+            <h3>C / C++</h3>
+            <b>↗</b>
+          </div>
 
-              <span>
-                {number}
-              </span>
+          <div className="skill-item">
+            <span>03</span>
+            <h3>Artificial Intelligence</h3>
+            <b>↗</b>
+          </div>
 
-              <h3>
-                {skill}
-              </h3>
+          <div className="skill-item">
+            <span>04</span>
+            <h3>Machine Learning</h3>
+            <b>↗</b>
+          </div>
+
+          <div className="skill-item">
+            <span>05</span>
+            <h3>Computer Vision</h3>
+            <b>↗</b>
+          </div>
+
+          <div className="skill-item">
+            <span>06</span>
+            <h3>YOLO</h3>
+            <b>↗</b>
+          </div>
+
+          <div className="skill-item">
+            <span>07</span>
+            <h3>OpenCV</h3>
+            <b>↗</b>
+          </div>
+
+          <div className="skill-item">
+            <span>08</span>
+            <h3>MobileNetV3</h3>
+            <b>↗</b>
+          </div>
+
+          <div className="skill-item">
+            <span>09</span>
+            <h3>TensorFlow</h3>
+            <b>↗</b>
+          </div>
+
+          <div className="skill-item">
+            <span>10</span>
+            <h3>Arduino</h3>
+            <b>↗</b>
+          </div>
+
+          <div className="skill-item">
+            <span>11</span>
+            <h3>ESP32</h3>
+            <b>↗</b>
+          </div>
+
+          <div className="skill-item">
+            <span>12</span>
+            <h3>Raspberry Pi</h3>
+            <b>↗</b>
+          </div>
+
+          <div className="skill-item">
+            <span>13</span>
+            <h3>IoT</h3>
+            <b>↗</b>
+          </div>
+
+          <div className="skill-item">
+            <span>14</span>
+            <h3>Embedded Systems</h3>
+            <b>↗</b>
+          </div>
+
+          <div className="skill-item">
+            <span>15</span>
+            <h3>Robotics</h3>
+            <b>↗</b>
+          </div>
+
+          <div className="skill-item">
+            <span>16</span>
+            <h3>Image Processing</h3>
+            <b>↗</b>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* ================= WORK ================= */}
+
+      <section
+        id="work"
+        className="section work-section"
+      >
+
+        <div className="section-number">
+          03 / SELECTED WORK
+        </div>
+
+        <div className="work-heading">
+
+          <h2>
+            Things
+            <br />
+            I've
+            <br />
+            built.
+          </h2>
+
+          <p>
+            Selected projects combining AI, Computer Vision,
+            Robotics and Embedded Systems.
+          </p>
+
+        </div>
+
+        <article className="project-card">
+
+          <div className="project-image">
+
+            <img
+              src={jewelleryTheft}
+              alt="Jewellery Theft Detection System"
+            />
+
+            <span className="project-number">
+              01
+            </span>
+
+          </div>
+
+          <div className="project-info">
+
+            <div className="project-category">
+              AI / COMPUTER VISION
+            </div>
+
+            <h3>
+              Jewellery Theft Detection System
+            </h3>
+
+            <p className="project-intro">
+              An AI-powered CCTV surveillance system designed
+              to detect suspicious activities in a jewellery shop
+              and identify potential theft-related behaviour.
+            </p>
+
+            <div className="project-columns">
+
+              <div>
+
+                <label>
+                  PROBLEM
+                </label>
+
+                <p>
+                  Continuous manual monitoring of CCTV footage
+                  can make it difficult to identify suspicious
+                  jewellery related activities in real time.
+                </p>
+
+              </div>
+
+              <div>
+
+                <label>
+                  SOLUTION
+                </label>
+
+                <p>
+                  The system uses Computer Vision and AI models
+                  to analyse CCTV footage and identify
+                  jewellery-related activities.
+                </p>
+
+              </div>
 
             </div>
 
-          ))}
+            <div className="pipeline">
+              CCTV Camera → Person Detection → Hand Detection →
+              Jewellery Detection → Behaviour Analysis →
+              Theft Detection
+            </div>
 
-        </div>
+            <div className="project-tech">
+              YOLO • MobileNetV3 • Python • Computer Vision • Raspberry Pi
+            </div>
 
-      </section>
+          </div>
 
+        </article>
 
-      {/* ================= PROJECTS ================= */}
+        <article className="project-card">
 
-      <section id="projects" className="section projects">
+          <div className="project-image">
 
-        <div className="section-number">
-          04 / PROJECTS
-        </div>
+            <img
+              src={plantCareRobot}
+              alt="Smart Campus Plant Care Robot"
+            />
 
-        <h2>
-          Things I&apos;ve
-          <br />
-          <span>built.</span>
-        </h2>
+            <span className="project-number">
+              02
+            </span>
 
-        <div className="projects-list">
+          </div>
 
-          {projects.map((project) => (
+          <div className="project-info">
 
-            <article
-              className="project-card"
-              key={project.number}
-            >
+            <div className="project-category">
+              ROBOTICS / IOT
+            </div>
 
-              <div className="project-number">
-                {project.number}
-              </div>
+            <h3>
+              Smart Campus Plant Care Robot
+            </h3>
 
-              <div className="project-content">
+            <p className="project-intro">
+              An autonomous robotic system designed to monitor
+              campus plants, analyse soil conditions and support
+              smart irrigation.
+            </p>
 
-                <div className="project-top">
+            <div className="project-columns">
 
-                  <span>
-                    {project.category}
-                  </span>
+              <div>
 
-                </div>
-
-                <h3>
-                  {project.title}
-                </h3>
-
-                <div className="project-image">
-
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                  />
-
-                </div>
+                <label>
+                  PROBLEM
+                </label>
 
                 <p>
-                  {project.description}
+                  Manual plant monitoring can result in irregular
+                  watering and difficulty in continuously checking
+                  plant conditions.
                 </p>
-
-                <div className="project-details">
-
-                  <div className="project-detail-block">
-
-                    <span>
-                      PROBLEM
-                    </span>
-
-                    <p>
-                      {project.problem}
-                    </p>
-
-                  </div>
-
-
-                  <div className="project-detail-block">
-
-                    <span>
-                      SOLUTION
-                    </span>
-
-                    <p>
-                      {project.solution}
-                    </p>
-
-                  </div>
-
-
-                  <div className="project-detail-block">
-
-                    <span>
-                      PROJECT PIPELINE
-                    </span>
-
-                    <div className="pipeline">
-
-                      {project.pipeline.map(
-                        (step, index) => (
-
-                          <React.Fragment key={step}>
-
-                            <div className="pipeline-step">
-                              {step}
-                            </div>
-
-                            {index <
-                              project.pipeline.length - 1 && (
-                              <span className="pipeline-arrow">
-                                →
-                              </span>
-                            )}
-
-                          </React.Fragment>
-
-                        )
-                      )}
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-
-                <div className="project-tech">
-                  {project.tech}
-                </div>
-
-
-                <p className="project-contribution">
-
-                  <strong>
-                    MY CONTRIBUTION:
-                  </strong>
-
-                  <br />
-
-                  {project.contribution}
-
-                </p>
-
-
-                <div className="project-status">
-
-                  <span>
-                    STATUS
-                  </span>
-
-                  <p>
-                    {project.status}
-                  </p>
-
-                </div>
 
               </div>
 
-            </article>
+              <div>
 
-          ))}
+                <label>
+                  SOLUTION
+                </label>
 
-        </div>
+                <p>
+                  A mobile robot can move around the campus,
+                  monitor plants and collect environmental data
+                  using sensors and cameras.
+                </p>
+
+              </div>
+
+            </div>
+
+            <div className="pipeline">
+              Robot Mobility → Plant Detection → Sensor Reading →
+              Decision → Watering → IoT Monitoring
+            </div>
+
+            <div className="project-tech">
+              ESP32 • Arduino • IoT • Sensors • Robotics
+            </div>
+
+          </div>
+
+        </article>
+
+        <article className="project-card">
+
+          <div className="project-image">
+
+            <img
+              src={tomatoDiseaseRobot}
+              alt="Tomato Disease Detection Robot"
+            />
+
+            <span className="project-number">
+              03
+            </span>
+
+          </div>
+
+          <div className="project-info">
+
+            <div className="project-category">
+              ROBOTICS / AI
+            </div>
+
+            <h3>
+              Smart Campus Tomato Disease Detection Robot
+            </h3>
+
+            <p className="project-intro">
+              A robotic system using a camera and AI-based image
+              processing to identify tomato plants and detect
+              plant diseases.
+            </p>
+
+            <div className="project-columns">
+
+              <div>
+
+                <label>
+                  PROBLEM
+                </label>
+
+                <p>
+                  Manual inspection of plant leaves can make
+                  disease identification time-consuming when
+                  monitoring multiple plants.
+                </p>
+
+              </div>
+
+              <div>
+
+                <label>
+                  SOLUTION
+                </label>
+
+                <p>
+                  The robot captures tomato leaf images and
+                  processes them to identify diseases such as
+                  Early Blight and Late Blight.
+                </p>
+
+              </div>
+
+            </div>
+
+            <div className="pipeline">
+              ESP32 → Camera → Detect Tomato Plant →
+              Capture Leaf → Image Processing → Disease Detection
+            </div>
+
+            <div className="project-tech">
+              ESP32 • Computer Vision • Image Processing • Machine Learning
+            </div>
+
+          </div>
+
+        </article>
 
       </section>
-
 
       {/* ================= EXPERIENCE ================= */}
 
       <section
         id="experience"
-        className="section experience"
+        className="section experience-section"
       >
 
         <div className="section-number">
-          05 / EXPERIENCE
+          04 / EXPERIENCE
         </div>
 
-        <h2>
-          Learning through
-          <br />
-          <span>experience.</span>
-        </h2>
+        <div className="experience-heading">
 
-        <div className="experience-timeline">
+          <h2>
+            Where
+            <br />
+            I'm
+            <br />
+            learning.
+          </h2>
 
-          {/* EXPERIENCE 01 */}
+          <p>
+            Practical experience through internships and engineering projects.
+          </p>
 
-          <div className="experience-item">
+        </div>
 
-            <div className="experience-left">
+        <div className="experience-list">
 
-              <span className="experience-number">
-                01
-              </span>
+          <article className="experience-item">
 
-              <div className="experience-line"></div>
-
+            <div className="experience-index">
+              01
             </div>
 
-            <div className="experience-content">
+            <div className="experience-main">
 
-              <div className="experience-date">
-                MAY 2026 – PRESENT
+              <div className="experience-meta">
+                MAY 2026 — PRESENT
               </div>
 
               <h3>
-                AI / Computer Vision Intern — EduHubby
+                AI / Computer Vision Intern
               </h3>
 
               <p>
-                Working on training a CCTV-based computer
-                vision model for theft detection. Involved in
-                model training and development for identifying
-                suspicious and theft-related activities from
-                surveillance footage.
+                Working on training a CCTV-based computer vision
+                model for theft detection and identifying
+                suspicious and theft-related activities.
               </p>
 
-              <div className="experience-tags">
-
+              <div className="tags">
                 <span>AI</span>
                 <span>ML</span>
                 <span>COMPUTER VISION</span>
                 <span>YOLO</span>
                 <span>PYTHON</span>
-
               </div>
 
             </div>
 
-          </div>
+            <div className="experience-company">
 
+              <strong>
+                EduHubby
+              </strong>
 
-          {/* EXPERIENCE 02 */}
-
-          <div className="experience-item">
-
-            <div className="experience-left">
-
-              <span className="experience-number">
-                02
+              <span className="working-badge">
+                <i></i>
+                CURRENTLY WORKING
               </span>
-
-              <div className="experience-line"></div>
 
             </div>
 
-            <div className="experience-content">
+          </article>
 
-              <div className="experience-date">
+          <article className="experience-item">
+
+            <div className="experience-index">
+              02
+            </div>
+
+            <div className="experience-main">
+
+              <div className="experience-meta">
                 ENGINEERING / PROJECT EXPERIENCE
               </div>
 
@@ -628,44 +681,39 @@ function App() {
               </h3>
 
               <p>
-                Hands-on experience developing engineering
-                projects involving Artificial Intelligence,
-                Computer Vision, Machine Learning, Embedded
-                Systems, IoT and Robotics.
+                Hands-on development involving Artificial Intelligence,
+                Computer Vision, Machine Learning, Embedded Systems,
+                IoT and Robotics.
               </p>
 
-              <div className="experience-tags">
-
-                <span>AI</span>
-                <span>ML</span>
-                <span>COMPUTER VISION</span>
+              <div className="tags">
                 <span>ESP32</span>
                 <span>ARDUINO</span>
+                <span>AI</span>
+                <span>ML</span>
                 <span>IoT</span>
-
               </div>
 
             </div>
 
-          </div>
-
-
-          {/* EXPERIENCE 03 */}
-
-          <div className="experience-item last">
-
-            <div className="experience-left">
-
-              <span className="experience-number">
-                03
-              </span>
-
+            <div className="experience-company">
+              <strong>
+                PROJECTS
+              </strong>
             </div>
 
-            <div className="experience-content">
+          </article>
 
-              <div className="experience-date">
-                PRACTICAL PROJECT DEVELOPMENT
+          <article className="experience-item">
+
+            <div className="experience-index">
+              03
+            </div>
+
+            <div className="experience-main">
+
+              <div className="experience-meta">
+                PRACTICAL DEVELOPMENT
               </div>
 
               <h3>
@@ -673,117 +721,146 @@ function App() {
               </h3>
 
               <p>
-                Worked on practical systems involving object
-                detection, image processing, plant analysis,
-                model training, microcontrollers, sensors
-                and IoT technologies.
+                Practical work involving object detection,
+                image processing, plant analysis, model training,
+                microcontrollers, sensors and IoT technologies.
               </p>
 
-              <div className="experience-tags">
-
-                <span>YOLO</span>
-                <span>OpenCV</span>
+              <div className="tags">
+                <span>OPENCV</span>
+                <span>MOBILENETV3</span>
+                <span>TENSORFLOW</span>
                 <span>PYTHON</span>
-                <span>ESP32</span>
-                <span>RASPBERRY PI</span>
-
+                <span>EMBEDDED</span>
               </div>
 
             </div>
 
-          </div>
+            <div className="experience-company">
+              <strong>
+                DEVELOPMENT
+              </strong>
+            </div>
+
+          </article>
 
         </div>
 
       </section>
-
 
       {/* ================= CERTIFICATIONS ================= */}
 
       <section
         id="certifications"
-        className="section certifications"
+        className="section certifications-section"
       >
 
         <div className="section-number">
-          06 / CERTIFICATIONS
+          05 / CERTIFICATIONS
         </div>
 
-        <h2>
-          Learning never
-          <br />
-          <span>stops.</span>
-        </h2>
+        <div className="certifications-heading">
 
-        <div className="certification-grid">
+          <h2>
+            Learning
+            <br />
+            continuously.
+          </h2>
 
-          <div className="certification-card">
+          <p>
+            Building knowledge through courses, projects and
+            practical engineering experience.
+          </p>
+
+        </div>
+
+        <div className="certification-list">
+
+          <article className="certification-item">
 
             <span>
               01
             </span>
 
-            <h3>
-              AI & Machine Learning
-            </h3>
+            <div>
 
-            <p>
-              Artificial Intelligence and Machine Learning
-              learning experience.
-            </p>
+              <h3>
+                Artificial Intelligence
+              </h3>
 
-          </div>
+              <p>
+                AI and machine learning related learning and projects.
+              </p>
 
+            </div>
 
-          <div className="certification-card">
+            <b>
+              ↗
+            </b>
+
+          </article>
+
+          <article className="certification-item">
 
             <span>
               02
             </span>
 
-            <h3>
-              Computer Vision
-            </h3>
+            <div>
 
-            <p>
-              Practical experience with computer vision
-              and object detection technologies.
-            </p>
+              <h3>
+                Computer Vision
+              </h3>
 
-          </div>
+              <p>
+                Object detection, image processing and visual AI.
+              </p>
 
+            </div>
 
-          <div className="certification-card">
+            <b>
+              ↗
+            </b>
+
+          </article>
+
+          <article className="certification-item">
 
             <span>
               03
             </span>
 
-            <h3>
-              Embedded Systems
-            </h3>
+            <div>
 
-            <p>
-              Microcontrollers, sensors, Arduino and
-              ESP32 based systems.
-            </p>
+              <h3>
+                Embedded Systems
+              </h3>
 
-          </div>
+              <p>
+                Microcontrollers, sensors, robotics and IoT systems.
+              </p>
+
+            </div>
+
+            <b>
+              ↗
+            </b>
+
+          </article>
 
         </div>
 
       </section>
 
-
       {/* ================= CONTACT ================= */}
 
       <section
         id="contact"
-        className="section contact"
+        className="section contact-section"
       >
 
         <div className="section-number">
-          07 / CONTACT
+          06 / CONTACT
         </div>
 
         <div className="contact-heading">
@@ -791,211 +868,42 @@ function App() {
           <div>
 
             <h2>
-              Let&apos;s build
+              Let's build
               <br />
-              something
-              <br />
-              <span>intelligent.</span>
+              something.
             </h2>
 
             <p>
-              Have a project idea, collaboration opportunity,
-              internship opportunity or simply want to connect?
-              I&apos;d love to hear from you.
+              Have a project idea, internship opportunity,
+              collaboration or simply want to connect?
             </p>
 
           </div>
 
-          <div className="contact-symbol">
-            ↗
-          </div>
+          <div className="contact-links">
 
-        </div>
+            <a href="mailto:akilsaptasagare@gmail.com">
+              EMAIL
+              <span>↗</span>
+            </a>
 
+            <a
+              href="https://github.com/akilsaptasagare"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GITHUB
+              <span>↗</span>
+            </a>
 
-        <div className="contact-grid">
-
-          {/* EMAIL */}
-
-          <a
-            href="mailto:akhilsaptasagar3@gmail.com"
-            className="contact-card"
-          >
-
-            <div className="contact-card-icon">
-              ✉
-            </div>
-
-            <div className="contact-card-content">
-
-              <span>
-                EMAIL
-              </span>
-
-              <strong>
-                akhilsaptasagar3@gmail.com
-              </strong>
-
-            </div>
-
-            <div className="contact-arrow">
-              ↗
-            </div>
-
-          </a>
-
-
-          {/* LINKEDIN */}
-
-          <a
-            href="https://www.linkedin.com/in/akil-saptasagar-771a4039a/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-card"
-          >
-
-            <div className="contact-card-icon">
-              in
-            </div>
-
-            <div className="contact-card-content">
-
-              <span>
-                LINKEDIN
-              </span>
-
-              <strong>
-                akil-saptasagar-771a4039a
-              </strong>
-
-            </div>
-
-            <div className="contact-arrow">
-              ↗
-            </div>
-
-          </a>
-
-
-          {/* GITHUB */}
-
-          <a
-            href="https://github.com/AKILSAPTASAGRE"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-card"
-          >
-
-            <div className="contact-card-icon">
-              &lt;/&gt;
-            </div>
-
-            <div className="contact-card-content">
-
-              <span>
-                GITHUB
-              </span>
-
-              <strong>
-                AKILSAPTASAGRE
-              </strong>
-
-            </div>
-
-            <div className="contact-arrow">
-              ↗
-            </div>
-
-          </a>
-
-
-          {/* INSTAGRAM */}
-
-          <a
-            href="https://www.instagram.com/akil_saptasagare/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-card"
-          >
-
-            <div className="contact-card-icon">
-              ◎
-            </div>
-
-            <div className="contact-card-content">
-
-              <span>
-                INSTAGRAM
-              </span>
-
-              <strong>
-                @akil_saptasagare
-              </strong>
-
-            </div>
-
-            <div className="contact-arrow">
-              ↗
-            </div>
-
-          </a>
-
-
-          {/* PHONE */}
-
-          <a
-            href="tel:+918867668644"
-            className="contact-card"
-          >
-
-            <div className="contact-card-icon">
-              ☎
-            </div>
-
-            <div className="contact-card-content">
-
-              <span>
-                PHONE
-              </span>
-
-              <strong>
-                +91 88676 68644
-              </strong>
-
-            </div>
-
-            <div className="contact-arrow">
-              ↗
-            </div>
-
-          </a>
-
-        </div>
-
-
-        <div className="contact-bottom">
-
-          <div>
-
-            <span>
-              AVAILABLE FOR
-            </span>
-
-            <strong>
-              Projects • Collaboration • Opportunities
-            </strong>
-
-          </div>
-
-          <div>
-
-            <span>
-              BASED IN
-            </span>
-
-            <strong>
-              Belagavi, Karnataka, India
-            </strong>
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LINKEDIN
+              <span>↗</span>
+            </a>
 
           </div>
 
@@ -1003,36 +911,147 @@ function App() {
 
       </section>
 
-
       {/* ================= FOOTER ================= */}
 
-      <footer>
+      <footer className="footer">
 
-        <div className="footer-logo">
-          AS<span>.</span>
-        </div>
+        <span>
+          © 2026 AKHIL SAPTASAGARE
+        </span>
 
-        <p>
-          © 2026 Akhil Saptasagare. All rights reserved.
-        </p>
+        <span>
+          AI / ML / COMPUTER VISION / EMBEDDED SYSTEMS
+        </span>
 
-        <div className="footer-links">
-
-          <a onClick={() => scrollToSection("home")}>
-            HOME
-          </a>
-
-          <a onClick={() => scrollToSection("projects")}>
-            PROJECTS
-          </a>
-
-          <a onClick={() => scrollToSection("contact")}>
-            CONTACT
-          </a>
-
-        </div>
+        <button
+          onClick={() => scrollTo("home")}
+        >
+          BACK TO TOP ↑
+        </button>
 
       </footer>
+
+      {/* ================= CHAT BUTTON ================= */}
+
+      <button
+        className={`chat-button ${
+          chatOpen ? "active" : ""
+        }`}
+        onClick={() => setChatOpen(!chatOpen)}
+      >
+        {chatOpen ? "CLOSE" : "CHAT"}
+      </button>
+
+      {/* ================= CHAT WINDOW ================= */}
+
+      {chatOpen && (
+
+        <div className="chat-window">
+
+          <div className="chat-header">
+
+            <div>
+
+              <span className="chat-status"></span>
+
+              <strong>
+                AKHIL'S ASSISTANT
+              </strong>
+
+            </div>
+
+            <button
+              onClick={() => setChatOpen(false)}
+            >
+              ×
+            </button>
+
+          </div>
+
+          <div className="chat-body">
+
+            <div className="chat-message bot">
+
+              Hi! 👋
+
+              <br />
+
+              I'm here to help you learn more about
+              Akhil's projects, skills and experience.
+
+            </div>
+
+            <div className="quick-questions">
+
+              <button
+                onClick={() =>
+                  setChatMessage(
+                    "I would like to know about your projects."
+                  )
+                }
+              >
+                PROJECTS
+              </button>
+
+              <button
+                onClick={() =>
+                  setChatMessage(
+                    "I would like to know about your skills."
+                  )
+                }
+              >
+                SKILLS
+              </button>
+
+              <button
+                onClick={() =>
+                  setChatMessage(
+                    "I would like to know about your internship."
+                  )
+                }
+              >
+                EXPERIENCE
+              </button>
+
+              <button
+                onClick={() =>
+                  setChatMessage(
+                    "I would like to contact you."
+                  )
+                }
+              >
+                CONTACT
+              </button>
+
+            </div>
+
+          </div>
+
+          <div className="chat-input">
+
+            <input
+              type="text"
+              placeholder="Ask something..."
+              value={chatMessage}
+              onChange={(e) =>
+                setChatMessage(e.target.value)
+              }
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  sendMessage();
+                }
+              }}
+            />
+
+            <button onClick={sendMessage}>
+              ↗
+            </button>
+
+          </div>
+
+        </div>
+
+      )}
 
     </div>
   );
