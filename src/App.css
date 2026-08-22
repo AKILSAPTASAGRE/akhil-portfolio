@@ -2027,4 +2027,53 @@ a {
     right: 18px;
     bottom: 18px;
   }
+/* =========================================================
+   HERO PHOTO — SLIGHTLY BRIGHTER
+   DO NOT CHANGE ANY OTHER PORTFOLIO STYLES
+   ========================================================= */
+
+/* Brighten the existing hero background image */
+.hero {
+  background-blend-mode: normal;
 }
+
+/* If the hero uses an overlay, make it slightly lighter */
+.hero::before {
+  opacity: 0.90;
+}
+
+/* Keep the photo visible and natural */
+.hero img {
+  filter: brightness(1.15) contrast(1.05);
+}
+}
+/* FINAL PHOTO BRIGHTNESS FIX � DO NOT CHANGE ANYTHING ELSE */
+.hero::before {
+  opacity: 0.90 !important;
+}
+
+
+/* ===== FINAL HERO PHOTO BRIGHTNESS ONLY ===== */
+
+.hero,
+.hero-section,
+.home-hero {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+  background-blend-mode: screen !important;
+}
+
+/* Reduce only the dark overlay over the photo */
+.hero::before,
+.hero-section::before,
+.home-hero::before {
+  background: rgba(0, 0, 0, 0.25) !important;
+  opacity: 1 !important;
+}
+
+/* If the photo is an actual image */
+.hero img,
+.hero-section img,
+.home-hero img {
+  filter: brightness(1.30) contrast(1.05) !important;
+}
+
