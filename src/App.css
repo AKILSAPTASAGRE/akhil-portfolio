@@ -182,10 +182,6 @@ a {
   left: 50%;
   top: 50%;
 
-  /*
-    KEEP THE COMPLETE PHOTO VISIBLE
-    AND CENTER IT.
-  */
   width: 100%;
   height: 100%;
 
@@ -678,10 +674,6 @@ a {
 
   display: block;
 
-  /*
-    SHOW THE COMPLETE PROJECT IMAGE.
-    DO NOT CROP IT.
-  */
   object-fit: contain;
 
   object-position: center center;
@@ -1424,7 +1416,6 @@ a {
 
     align-items: flex-start;
   }
-
 }
 
 @media (max-width: 700px) {
@@ -1476,10 +1467,6 @@ a {
     width: 100%;
     height: 100%;
 
-    /*
-      SHOW COMPLETE PHOTO ON MOBILE
-      AND KEEP IT CENTERED.
-    */
     object-fit: contain;
 
     object-position: center center;
@@ -1613,9 +1600,6 @@ a {
   .project-image img {
     min-height: 280px;
 
-    /*
-      SHOW THE FULL PROJECT IMAGE ON MOBILE
-    */
     object-fit: contain;
 
     object-position: center center;
@@ -1686,7 +1670,6 @@ a {
 
     width: calc(100vw - 36px);
   }
-
 }
 
 @media (max-width: 430px) {
@@ -1711,501 +1694,36 @@ a {
   .project-columns p {
     font-size: 14px;
   }
-
 }
+
 /* =========================================================
-   MOBILE FIX ONLY
-   Desktop design remains unchanged
+   FINAL MOBILE ADJUSTMENT
+   ONLY:
+   1. Move hero text slightly to the side.
+   2. Increase photo visibility.
+   Desktop remains unchanged.
    ========================================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
 
-  html,
-  body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
+  /* Move only the hero text slightly to the left */
+  .hero-content {
+    margin-left: 14px !important;
+    margin-right: 25px !important;
   }
 
-  #root {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  /* ---------- HEADER ---------- */
-
-  header,
-  .navbar,
-  nav {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* ---------- HERO ---------- */
-
-  .hero {
-    width: 100%;
-    min-height: 100vh;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .hero-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
+  /* Make the photo slightly more visible */
   .hero-image img {
-    position: absolute;
-
-    width: 100%;
-    height: 100%;
-
-    max-width: none;
-
-    object-fit: cover;
-
-    object-position: center center;
-
-    left: 0;
-    top: 0;
-
-    transform: none;
-
-    filter: brightness(0.45) contrast(1.08);
-  }
-
-  /* ---------- HERO DARK OVERLAY ---------- */
-
-  .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.35),
-        rgba(0, 0, 0, 0.45) 45%,
-        rgba(0, 0, 0, 0.82) 100%
-      );
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* ---------- HERO CONTENT ---------- */
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-
-    width: 100%;
-    max-width: 100%;
-
-    box-sizing: border-box;
-
-    padding-left: 46px;
-    padding-right: 28px;
-
-    overflow: hidden;
-  }
-
-  /* ---------- TOP LABELS ---------- */
-
-  .hero-top,
-  .hero-top-left,
-  .hero-top-right {
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  .hero-top-left {
-    max-width: 150px;
-  }
-
-  .hero-top-right {
-    max-width: 180px;
-  }
-
-  /* ---------- HELLO ---------- */
-
-  .hero-intro {
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* ---------- NAME ---------- */
-
-  .hero-title {
-    width: 100%;
-    max-width: 100%;
-
-    font-size: clamp(58px, 16vw, 110px);
-    line-height: 0.88;
-
-    letter-spacing: -0.055em;
-
-    word-break: normal;
-    overflow-wrap: normal;
-
-    white-space: normal;
-
-    box-sizing: border-box;
-  }
-
-  .hero-title span {
-    display: block;
-    max-width: 100%;
-  }
-
-  /* ---------- DESCRIPTION ---------- */
-
-  .hero-description {
-    width: 100%;
-    max-width: 100%;
-
-    padding-right: 20px;
-
-    font-size: 17px;
-    line-height: 1.65;
-
-    box-sizing: border-box;
-
-    overflow-wrap: break-word;
-  }
-
-  /* ---------- SCROLL BUTTON ---------- */
-
-  .scroll-button {
-    position: absolute;
-
-    right: 28px;
-    bottom: 34px;
-
-    width: 62px;
-    height: 62px;
-
-    z-index: 5;
-  }
-
-  /* ---------- CHAT BUTTON ---------- */
-
-  .chat-button {
-    position: fixed;
-
-    right: 18px;
-    bottom: 18px;
-
-    width: 62px;
-    height: 62px;
-
-    z-index: 100;
-  }
-
-  /* ---------- SECTIONS ---------- */
-
-  section {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow-x: hidden;
-  }
-
-  .section-container,
-  .container {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-
-    padding-left: 28px;
-    padding-right: 28px;
-  }
-
-  /* ---------- LARGE SECTION HEADINGS ---------- */
-
-  .section-title {
-    max-width: 100%;
-
-    font-size: clamp(55px, 15vw, 100px);
-    line-height: 0.9;
-
-    overflow-wrap: normal;
-  }
-
-  /* ---------- PROJECTS ---------- */
-
-  .project-card,
-  .project-content,
-  .project-image {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  .project-image img {
-    width: 100%;
-    height: auto;
-
-    max-width: 100%;
-
-    object-fit: contain;
-  }
-
-  /* ---------- CONTACT ---------- */
-
-  .contact-section {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  .contact-form {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* ---------- FOOTER ---------- */
-
-  footer {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-}
-
-
-/* =========================================================
-   SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 480px) {
-
-  .hero-content {
-    padding-left: 32px;
-    padding-right: 22px;
-  }
-
-  .hero-title {
-    font-size: clamp(52px, 17vw, 82px);
-    line-height: 0.9;
-  }
-
-  .hero-description {
-    font-size: 16px;
-    line-height: 1.6;
-    padding-right: 10px;
-  }
-
-  .hero-top-left {
-    max-width: 135px;
-  }
-
-  .hero-top-right {
-    max-width: 155px;
-  }
-
-  .scroll-button {
-    right: 22px;
-    bottom: 92px;
-  }
-
-  .chat-button {
-    right: 18px;
-    bottom: 18px;
-  }
-/* =========================================================
-   HERO PHOTO — SLIGHTLY BRIGHTER
-   DO NOT CHANGE ANY OTHER PORTFOLIO STYLES
-   ========================================================= */
-
-/* Brighten the existing hero background image */
-.hero {
-  background-blend-mode: normal;
-}
-
-/* If the hero uses an overlay, make it slightly lighter */
-.hero::before {
-  opacity: 0.90;
-}
-
-/* Keep the photo visible and natural */
-.hero img {
-  filter: brightness(1.15) contrast(1.05);
-}
-}
-/* FINAL PHOTO BRIGHTNESS FIX � DO NOT CHANGE ANYTHING ELSE */
-.hero::before {
-  opacity: 0.90 !important;
-}
-
-
-/* ===== FINAL HERO PHOTO BRIGHTNESS ONLY ===== */
-
-.hero,
-.hero-section,
-.home-hero {
-  background-color: rgba(255, 255, 255, 0.10) !important;
-  background-blend-mode: screen !important;
-}
-
-/* Reduce only the dark overlay over the photo */
-.hero::before,
-.hero-section::before,
-.home-hero::before {
-  background: rgba(0, 0, 0, 0.25) !important;
-  opacity: 1 !important;
-}
-
-/* If the photo is an actual image */
-.hero img,
-.hero-section img,
-.home-hero img {
-  filter: brightness(1.30) contrast(1.05) !important;
-}
-
-
-/* =====================================================
-   MOBILE HERO PHOTO � BRIGHTNESS ONLY
-   DO NOT CHANGE ANY OTHER DESIGN
-   ===================================================== */
-
-@media (max-width: 767px) {
-
-  /* Brighten the actual profile image if it is an img */
-  .hero img,
-  .hero-image,
-  .hero-photo {
-    filter: brightness(1.35) contrast(1.05) !important;
-  }
-
-  /* Reduce the darkness of the photo overlay */
-  .hero::before {
-    opacity: 0.45 !important;
-  }
-
-  .hero::after {
-    opacity: 0.45 !important;
-  }
-}
-
-
-@media (max-width: 767px) {
-  .hero img,
-  .hero-image,
-  .hero-photo {
-    filter: brightness(1.50) contrast(1.05) !important;
-  }
-}
-/* =========================================
-   MOBILE HERO PHOTO - BRIGHTNESS FIX ONLY
-   ========================================= */
-
-@media (max-width: 768px) {
-
-  .hero {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    opacity: 0.35 !important;
-  }
-
-  .hero::after {
-    opacity: 0.20 !important;
-  }
-
-  .hero img,
-  .hero-image,
-  .profile-image,
-  .hero-photo {
-    filter: brightness(1.25) contrast(1.05) !important;
-  }
-}
-/* =========================================
-   MOBILE HERO PHOTO BRIGHTNESS
-   ========================================= */
-
-@media (max-width: 768px) {
-
-  .hero {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    opacity: 0.40 !important;
-  }
-
-  .hero::after {
-    opacity: 0.20 !important;
-  }
-
-  .hero-background {
-    filter: brightness(1.25) contrast(1.05) !important;
-  }
-}
-/* MOBILE HERO TEXT POSITION — ONLY CHANGE */
-@media (max-width: 768px) {
-
-  /* Move the hero text slightly inward from the left */
-  .hero-content {
-    padding-left: 18px !important;
-  }
-
-  /* Keep the main heading aligned with the text */
-  .hero-content h1,
-  .hero-content h2,
-  .hero-content h3 {
-    margin-left: 0 !important;
-  }
-
-  /* Keep description aligned */
-  .hero-content p {
-    margin-left: 0 !important;
-  }
-}
-/* =====================================================
-   FINAL MOBILE HERO ADJUSTMENT
-   Text position + photo visibility ONLY
-   ===================================================== */
-
-@media (max-width: 768px) {
-
-  /* Move hero text slightly to the right */
-  .hero-content,
-  .hero-text,
-  .home-content,
-  .home-text {
-    position: relative !important;
-    left: 18px !important;
-  }
-
-  /* Make the portrait more visible */
-  .hero img,
-  .hero-image,
-  .profile-image,
-  .hero-photo {
     opacity: 1 !important;
-    filter: brightness(1.15) contrast(1.05) !important;
+    filter: brightness(1.05) contrast(1.08) !important;
   }
 
-  /* If the photo is a background */
-  .hero::before {
-    opacity: 0.45 !important;
+  /*
+    Reduce the dark overlay only on mobile.
+    This increases the photo visibility without
+    changing the actual image.
+  */
+  .hero-dark {
+    opacity: 0.72 !important;
   }
 }
