@@ -2077,3 +2077,37 @@ a {
   filter: brightness(1.30) contrast(1.05) !important;
 }
 
+
+/* =====================================================
+   MOBILE HERO PHOTO — BRIGHTNESS ONLY
+   DO NOT CHANGE ANY OTHER DESIGN
+   ===================================================== */
+
+@media (max-width: 767px) {
+
+  /* Brighten the actual profile image if it is an img */
+  .hero img,
+  .hero-image,
+  .hero-photo {
+    filter: brightness(1.35) contrast(1.05) !important;
+  }
+
+  /* Reduce the darkness of the photo overlay */
+  .hero::before {
+    opacity: 0.45 !important;
+  }
+
+  .hero::after {
+    opacity: 0.45 !important;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .hero img,
+  .hero-image,
+  .hero-photo {
+    filter: brightness(1.50) contrast(1.05) !important;
+  }
+}
+
