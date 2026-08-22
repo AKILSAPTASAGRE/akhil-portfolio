@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 
 import profileImage from "./assets/profile.jpg";
+import aboutProfileImage from "./assets/about-profile.png";
 import jewelleryTheftImage from "./assets/jewellery-theft.png";
 import tomatoDiseaseImage from "./assets/tomato-disease-robot.png";
 import plantCareImage from "./assets/plant-care-robot.png";
@@ -261,8 +262,10 @@ function App() {
 
           <div className="about-image">
 
+            {/* NEW ABOUT PHOTO */}
+
             <img
-              src={profileImage}
+              src={aboutProfileImage}
               alt="Akhil Saptasagare"
             />
 
@@ -553,7 +556,6 @@ function App() {
 
         <div className="experience-timeline">
 
-
           {/* EXPERIENCE 01 */}
 
           <div className="experience-item">
@@ -813,7 +815,6 @@ function App() {
 
         <div className="contact-grid">
 
-
           {/* EMAIL */}
 
           <a
@@ -968,7 +969,6 @@ function App() {
             </div>
 
           </a>
-
 
         </div>
 
